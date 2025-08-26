@@ -22,7 +22,13 @@ videos.forEach(video=>{
         if((e.target.getAttribute('id')==='1')||(e.target.getAttribute('id')==='4')){
             e.target.volume=.35
         }
-        e.target.play();
+        e.target.play().then(()=>{
+            console.log('cb')
+        })
+        .catch(()=>{
+            console.log('cpb')
+            alert('Veuillez activer "Lire automatiquement des médias" dans votre navigateur et rafraichir la page')
+        })
     });
     video.addEventListener('mouseleave',e=>{
         e.target.pause();
@@ -49,4 +55,7 @@ videos.forEach(video=>{
         e.target.currentTime=0;
         e.target.play();
     });
+    video.onerror=()=>{
+        alert('Veuillez activer "Lire automatiquement des médias" dans votre navigateur')
+    };
 });
